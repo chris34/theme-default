@@ -1,0 +1,64 @@
+{#
+    portal/feedselector.html
+    ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    A template for the feed selector
+
+    :copyright: (c) 2013-2015 by the Inyoka Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+#}
+
+{% extends 'portal/base.html' %}
+
+{% block breadcrumb %}
+  {{ super() }}
+
+  {{ macros.breadcrumb_item(_('Feeds'), href('portal', 'feeds')) }}
+  {% if app %}
+    {% if forum_form %}
+      {{ macros.breadcrumb_item(_('Forum'), href('portal', 'feeds', 'forum')) }}
+    {% elif ikhaya_form %}
+      {{ macros.breadcrumb_item(_('Ikhaya'), href('portal', 'feeds', 'ikhaya')) }}
+    {% elif planet_form %}
+      {{ macros.breadcrumb_item(_('Planet'), href('portal', 'feeds', 'planet')) }}
+    {% elif wiki_form %}
+      {{ macros.breadcrumb_item(_('Wiki'), href('portal', 'feeds', 'wiki')) }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  <h1>{% trans %}Generate feed{% endtrans %}</h1>
+
+  {% if not app %}
+    <p>
+      {% trans %}First, select the information-source for the feed.{% endtrans %}
+    </p>
+    <ul>
+      <li><a href="forum">{% trans %}Forum{% endtrans %}</a></li>
+      <li><a href="ikhaya">{% trans %}Ikhaya{% endtrans %}</a></li>
+      <li><a href="planet">{% trans %}Planet{% endtrans %}</a></li>
+      <li><a href="wiki">{% trans %}Wiki{% endtrans %}</a></li>
+    </ul>
+  {% else %}
+    {% if forum_form %}
+      <h2 id="forum">{% trans %}Forum{% endtrans %}</h2>
+      {{ macros.outer_form(csrf_token(), forum_form, action="/feeds/forum/", submit_label=_('Show feed')) }}
+    {% endif %}
+
+    {% if ikhaya_form %}
+      <h2 id="ikhaya">{% trans %}Ikhaya{% endtrans %}</h2>
+      {{ macros.outer_form(csrf_token(), ikhaya_form, action="/feeds/ikhaya/", submit_label=_('Show feed')) }}
+    {% endif %}
+
+    {% if planet_form %}
+      <h2 id="planet">{% trans %}Planet{% endtrans %}</h2>
+      {{ macros.outer_form(csrf_token(), planet_form, action="/feeds/planet/", submit_label=_('Show feed')) }}
+    {% endif %}
+
+    {% if wiki_form %}
+      <h2 id="wiki">{% trans %}Wiki{% endtrans %}</h2>
+      {{ macros.outer_form(csrf_token(), wiki_form, action="/feeds/wiki/", submit_label=_('Show feed')) }}
+    {% endif %}
+  {% endif %}
+{% endblock %}
