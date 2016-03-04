@@ -118,6 +118,14 @@ module.exports = function(grunt) {
       fontawesome_fonts: {
         src: 'fontawesome/fonts',
         dest: 'inyoka_theme_default/static/fonts'
+      },
+      simplemde_js: {
+        src: 'simplemde/dist/simplemde.min.js',
+        dest: 'inyoka_theme_default/static/js'
+      },
+      simplemde_css: {
+        src: 'simplemde/dist/simplemde.min.css',
+        dest: 'inyoka_theme_default/static/style'
       }
     },
     concat: {
@@ -127,9 +135,12 @@ module.exports = function(grunt) {
       complete: {
         src: ['./bower_components/jquery/dist/jquery.js',
               './bower_components/bootstrap/dist/js/bootstrap.js',
+              './bower_components/simplemde/dist/simplemde.min.js',
               './inyoka_theme_default/static/js/base.js',
+              './inyoka_theme_default/static/js/editor.js',
               './inyoka_theme_default/static/js/ikhaya.js',
-              './inyoka_theme_default/static/js/smoothscrolling.js',],
+              './inyoka_theme_default/static/js/smoothscrolling.js',
+              ],
         dest: 'inyoka_theme_default/static/js/complete.js',
       }
     }

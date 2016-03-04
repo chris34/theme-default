@@ -29,6 +29,7 @@
   {% endfor %}
 
   <link href="{{ href('static', 'style', 'style.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ href('static', 'style', 'simplemde.min.css') }}" rel="stylesheet" type="text/css" />
 {% endblock %}
 </head>
 
@@ -141,6 +142,9 @@
   {% endblock %}
 
   {% set extension = '.js' if SETTINGS.DEBUG else '.min.js' %}
+  <!--
+  <script src="{{ href('static', 'js', 'simplemde.min.js') }}"></script>
+  -->
   <script src="{{ href('static', 'js', 'complete' + extension) }}"></script>
 
   {% block scripts %} {% endblock %}

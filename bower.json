@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.2",
-    "fontawesome": "^4.3.0"
+    "fontawesome": "^4.3.0",
+    "simplemde": "^1.10.0"
   }
 }
