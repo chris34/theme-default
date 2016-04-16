@@ -9,8 +9,8 @@ Inyoka default Theme
 Installation
 ============
 
-On development systems:
------------------------
+Development systems
+-------------------
 
 1. Run ``git clone git@github.com:inyokaproject/theme-default.git`` next to
    the cloned Inyoka repository. (Basically, it doesn't matter were you clone
@@ -26,10 +26,10 @@ On development systems:
 
 2. Switch into the repository: ``cd theme-default``
 3. Activate source ``source ~/.venvs/inyoka/bin/activate``
-4. Install as a development package: ``python setup.py develop``
+4. Install the theme as a development package: ``python setup.py develop``
 5. Run ``npm install`` to install *Grunt*
-6. Run ``./node_modules/grunt-cli/bin/grunt watch`` to build all static files
-   and watch for file changes on the CSS / JS files
+6. Run ``./node_modules/grunt-cli/bin/grunt watch`` to build all static
+   files. After that it will watch for changes on the CSS / JS files. 
 7. Let Django know about the theme. Add ``'inyoka_theme_default'`` to the
    ``INSTALLED_APPS`` in ``inyoka/development_settings.py``::
 
@@ -37,13 +37,13 @@ On development systems:
            'inyoka_theme_default',
        )
 
-On Production
--------------
+Production
+----------
 
 1. Run ``pip install -U "git+ssh://git@github.com:inyokaproject/theme-default.git@staging#egg=inyoka-theme-default"``
 
 Deployment
-----------
+**********
 
 1. Run ``npm install`` to install *Grunt*
 2. Run ``./node_modules/grunt-cli/bin/grunt`` to build all static files
@@ -53,7 +53,7 @@ Running the tests
 -----------------
 
 We're using `tox <https://pypi.python.org/pypi/tox/>`_ to handle different
-Python (other) dependencies::
+Python dependencies::
 
     $ pip install tox
     $ tox
