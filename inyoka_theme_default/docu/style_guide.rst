@@ -1,4 +1,4 @@
-.. .. _coding_style_guide:
+.. _coding_style_guide:
 
 ==================
 Coding Style Guide
@@ -7,12 +7,10 @@ Coding Style Guide
 General
 =======
 
-::
-
-> "Part of being a good steward to a successful project is realizing that
-> writing code for yourself is a Bad Idea™. If thousands of people are using
-> your code, then write your code for maximum clarity, not your personal
-> preference of how to get clever within the spec." - Idan Gazit
+   "Part of being a good steward to a successful project is realizing that
+   writing code for yourself is a Bad Idea™. If thousands of people are using
+   your code, then write your code for maximum clarity, not your personal
+   preference of how to get clever within the spec." - Idan Gazit
 
 * Don't try to prematurely optimize your code; keep it readable and
   understandable.
@@ -54,7 +52,7 @@ Classes should be in lower_case, with words separated by underscores.
 
 .. code-block::
 
-<div class="my_class_name">
+  <div class="my_class_name">
 
 Attribute values must be enclosed in double quotation marks.
 
@@ -84,13 +82,57 @@ HTML. For example:
     <!-- Better -->
     <img class="avatar" src="...">
 
+
+Font-Awesome
+************
+
+ * if no included icon fits to the meaning of the link/text/etc. and it would be only decoration, don't use an icon at all
+ * `<span>` is used instead of the default `<i>`
+ * to use an font-awesome-icon just add `class=fa_icon-<icon-name>` to an `<span>`. No need for extra default `.fa`
+ * for accessebility there are mostly `three common ways <http://fortawesome.github.io/Font-Awesome/accessibility/>`_ of integrating font-awesome-icons
+
+   1. for pure decoration, which is optional, use `aria-hidden="true"`
+
+    .. code-block::
+
+      <li>
+        <a href="example.org">
+          <span class="fa_icon-fighter-jet" aria-hidden="true"></span>
+           Describes the link well enough
+        </a>
+      </li>
+
+   2. for non-interactive elements use bootstraps `.sr-only()`. The `title`-attribute is optional for a tooltip, if hovered.
+
+    .. code-block::
+
+      <p>Read-status of post xyz:</p>
+      <span class="fa_icon-times" aria-hidden="true" title="unread"></span>
+      <span class="sr-only">unread</span>
+
+   3. for interactive elements (links, buttons), that are normally only displayed as an icon, add a `title`-attribute
+
+    .. code-block::
+
+      <li>
+        <a href="#main-navigation" title="Open navigation">
+          <span class="fa_icon-bars" aria-hidden="true"></span>
+        </a>
+      </li>
+
 Jinja
 =====
 
- * Put spaces around python-code::
+ * Put spaces around python-code
+
+.. code-block::
 
   {{ my_function() }}
-  instead of
+
+instead of
+
+.. code-block::
+
   {{my_function()}}
 
 .. code-block::
@@ -109,13 +151,19 @@ There are multiple ways to mark strings for translation in templates.
 
 One is
 
-    _('example string')
+.. code-block::
+
+  _('example string')
 
 or
 
-    gettext('example string')
+.. code-block::
+
+  gettext('example string')
 
 or another one
+
+.. code-block::
 
     {% trans %}example string{% endtrans %}
 
@@ -125,13 +173,15 @@ Where to use which?
 Basically, `gettext()` does exactly the same as `_()`. The last one is
 just a short name. It is appreciated to only use `_()`. Both are mainly
 used in function calls or as parameters of macros, as {% trans %} cant
-be used there. For example foo_macro(_('Sign in'))
+be used there. For example use always `foo_macro(_('Sign in'))`
 
 In contrast, the third one is better for normal wrapped text in
 templates. Theoretically, it is possible to use `{{ _('some text') }}`
 instead of `{% trans %}some text{% endtrans %}`. So is there any
-benefit of using `{% trans %}`? Yes, you can pass values via variables
+benefit of using `{% trans %}`? Well, you can pass values via variables
 into the string, which will be translated. That's pretty elegant. An example:
+
+.. code-block::
 
     {% trans name=user.username %}
       Attention: You are currently editing “{{ name }}”.
