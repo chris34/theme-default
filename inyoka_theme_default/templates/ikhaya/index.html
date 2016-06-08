@@ -119,11 +119,11 @@
               {% if article.comments_enabled %}
                 <a href="{{ article|url }}#comment-section">
                 {% trans indicator=article.comment_count,
-                          count=article.comment_count|hnumber('masculine') %}
+                          count=article.comment_count|hnumber('masculine') -%}
                   {{ count }} comment
-                  {% pluralize indicator %}
+                  {%- pluralize indicator -%}
                   {{ count }} comments
-                {% endtrans %}
+                {%- endtrans %}
                 </a>
 
               {% else %}
