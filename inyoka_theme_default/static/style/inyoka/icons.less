@@ -12,4 +12,8 @@
 // one to specify the icon). This css-selector spares us the first one.
 [class^='@{fa-css-prefix}'] {
   .fa-icon();
+
+  .main-container .sidebar & {
+    &:extend(.fa_icon-fw);
+  }
 }
